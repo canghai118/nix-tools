@@ -1,0 +1,15 @@
+#!/bin/sh 
+if [ ! $1 ]; then
+	TARGET=`basename "$PWD"`
+else
+	TARGET=$1
+fi
+
+docker build -t $TARGET .  
+
+CONTAINER="$TARGET"-test
+
+docker rm -f $CONTAINER
+
+docker run -it --name $CONTAINER $TARGET
+
