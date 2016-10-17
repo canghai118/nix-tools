@@ -1,0 +1,8 @@
+#!/bin/bash
+clients=`tmux list-clients | awk '{print $1}' | sed 's/.$//'`
+
+for client in $clients; do
+	echo $client;
+	tmux detach -t $client;
+done
+
